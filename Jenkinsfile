@@ -13,12 +13,12 @@ pipeline {
   stages {
     stage('Run Ansible Playbook for Dev and QA') {
       steps {
-        sshagent([PRIVATE_KEY]) {
-          sh '''
-					  cd /home/ubuntu/ansible-setup
-            ansible-playbook -i ${INVENTORY} playbook.yml
-          '''
-        }
+        sshagent (credentials: ['ubuntu']) {
+					sh '''
+							cd /ansible-setup
+							ansible-playbook -i inventory playbook.yml
+					'''
+       }
       }
     }
   }
