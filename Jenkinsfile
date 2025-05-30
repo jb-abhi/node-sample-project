@@ -15,6 +15,7 @@ pipeline {
       steps {
         sshagent([PRIVATE_KEY]) {
           sh '''
+					  cd /home/ubuntu/ansible-setup
             ansible-playbook -i ${INVENTORY} playbook.yml
           '''
         }
